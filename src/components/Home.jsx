@@ -8,8 +8,8 @@ import Logo from "../assets/Logo.jpeg";
 
 const Home = () => {
   return (
-    <div>
-      <nav className="bg-gray-800 p-10 absolute top-0 left-0 right-0 flex justify-between items-center gap-7 shadow-2xl lg:p-5">
+    <div className="overflow-x-hidden">
+      <nav className="bg-gray-800 p-5 flex justify-between items-center shadow-2xl lg:p-5">
         <div className="flex items-center gap-2 -ml-2.5 lg:ml-10 lg:gap-4 lg:text-xl ">
           <img
             src={Logo}
@@ -39,41 +39,41 @@ const Home = () => {
           </a>
         </div>
       </nav>
-      <div className="flex flex-col items-center justify-center gap-6 h-screen  lg:gap-10 lg:mt-35 lg:h-auto">
-        <h1 className="text-3xl font-bold text-center">
-          Welcome to the All Express Where Shopping is Fast and Easy!
+      <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-10 pt-24">
+        <h1 className="text-2xl font-bold text-center">
+          Welcome to All Express - Your One-Stop Shop for Everything!
         </h1>
-        <div className="flex gap-3 justify-center ">
+
+        <div className="flex gap-3 justify-center flex-wrap">
           <img
             src={Img1}
             alt="Shopping Cart"
-            className="w-40 h-40 lg:w-70 lg:h-70 object-cover"
+            className="w-40 h-40 lg:w-64 lg:h-64 object-cover"
           />
           <img
             src={Img2}
             alt=""
-            className="object-cover w-40 h-40 lg:w-70 lg:h-70"
+            className="object-cover w-40 h-40 lg:w-64 lg:h-64"
           />
         </div>
-        <div className="flex gap-3 justify-center">
+
+        <div className="flex gap-3 justify-center flex-wrap">
           <img
             src={Img3}
             alt="Shopping Cart"
-            className="w-40 h-40 lg:w-70 lg:h-70 object-cover"
+            className="w-40 h-40 lg:w-64 lg:h-64 object-cover"
           />
           <img
             src={Img4}
             alt=""
-            className="object-cover w-40 h-40 lg:w-70 lg:h-70"
+            className="object-cover w-40 h-40 lg:w-64 lg:h-64"
           />
         </div>
-        <button className="btn btn-lg btn-primary lg:mb-5">
-          Go to Shopping
-        </button>
+
+        <button className="btn btn-lg btn-primary">Go to Shopping</button>
       </div>
     </div>
   );
 };
 
 export default Home;
-// ...existing code...
