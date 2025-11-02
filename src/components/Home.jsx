@@ -39,9 +39,9 @@ const Home = () => {
           </a>
         </div>
       </nav>
-      <div className="flex flex-col items-center justify-center gap-6 h-screen lg:flex-row lg:gap-10">
+      <div className="flex flex-col items-center justify-center gap-6 h-screen  lg:gap-10 lg:mt-35 lg:h-auto">
         <h1 className="text-3xl font-bold text-center">
-          Welcome to the Shopping Cart
+          Welcome to the All Express Where Shopping is Fast and Easy!
         </h1>
         <div className="flex gap-3 justify-center ">
           <img
@@ -67,7 +67,9 @@ const Home = () => {
             className="object-cover w-40 h-40 lg:w-70 lg:h-70"
           />
         </div>
-        <button className="btn btn-lg btn-primary">Go to Shopping</button>
+        <button className="btn btn-lg btn-primary lg:mb-5">
+          Go to Shopping
+        </button>
       </div>
     </div>
   );
