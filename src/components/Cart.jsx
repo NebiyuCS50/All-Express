@@ -115,10 +115,10 @@ const Cart = () => {
                   </Button>
                   <Input
                     type="number"
+                    value={product.quantity}
                     min="1"
-                    defaultValue={product.quantity}
                     className="ml-2 w-20 text-center"
-                    on={(e) => handleInputChange(e, product)}
+                    onChange={(e) => handleInputChange(e, product)}
                     onBlur={(e) => handleInputChange(e, product.id)}
                   />
                   <Button
