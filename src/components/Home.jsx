@@ -32,12 +32,12 @@ const Home = () => {
           >
             Shop
           </Link>
-          <a
+          <Link
             href="#"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
           >
             Cart
-          </a>
+          </Link>
         </div>
       </nav>
       <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-10 pt-24">
