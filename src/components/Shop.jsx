@@ -99,7 +99,7 @@ const Shop = () => {
           >
             Shop
           </Link>
-          <div className="absolute right-15 top-4 flex items-center justify-center w-6 h-6 bg-orange-600 text-white rounded-full lg:w-8 lg:h-8 lg:top-3 lg:right-12">
+          <div className="absolute right-1 top-2 flex items-center justify-center w-6 h-6 bg-orange-600 text-white rounded-full lg:w-8 lg:h-8 lg:top-3 lg:right-12 lg:top-4">
             <p className="text-white font-semibold lg:text-xl">
               {Object.keys(numberOfItems).reduce(
                 (acc, key) => acc + (numberOfItems[key] || 0),
@@ -108,12 +108,12 @@ const Shop = () => {
             </p>
           </div>
 
-          <a
-            href="#"
+          <Link
+            to="/cart"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
           >
             Cart
-          </a>
+          </Link>
         </div>
       </nav>
       <div className="max-w-6xl mx-auto px-4 pt-28 mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:mt-10">
