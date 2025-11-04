@@ -59,7 +59,9 @@ const Shop = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     console.log("Added to cart:", product.id, qty, cart);
+    console.log(numberOfItems);
   };
+
   return (
     <div>
       {loading && (
@@ -97,6 +99,15 @@ const Shop = () => {
           >
             Shop
           </Link>
+          <div className="absolute right-15 top-4 flex items-center justify-center w-6 h-6 bg-orange-600 text-white rounded-full lg:w-8 lg:h-8 lg:top-3 lg:right-12">
+            <p className="text-white font-semibold lg:text-xl">
+              {Object.keys(numberOfItems).reduce(
+                (acc, key) => acc + (numberOfItems[key] || 0),
+                0
+              )}
+            </p>
+          </div>
+
           <a
             href="#"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
