@@ -8,6 +8,7 @@ const Shop = () => {
   const [error, setError] = useState(null);
   const fetchedRef = useRef(false);
   const [numberOfItems, setNumberOfItems] = useState({});
+  const [carts, setCarts] = useState([]);
 
   useEffect(() => {
     if (fetchedRef.current) return;
@@ -55,9 +56,10 @@ const Shop = () => {
   const handleAddToCart = (product) => {
     const qty = Number(numberOfItems[product.id]) || 1;
     const cart = JSON.parse(localStorage.getItem("cart") || "{}");
+
     cart[product.id] = (cart[product.id] || 0) + qty;
     localStorage.setItem("cart", JSON.stringify(cart));
-
+    setCarts(cart);
     console.log("Added to cart:", product.id, qty, cart);
     console.log(numberOfItems);
   };
@@ -101,10 +103,7 @@ const Shop = () => {
           </Link>
           <div className="absolute right-1 top-2 flex items-center justify-center w-6 h-6 bg-orange-600 text-white rounded-full lg:w-8 lg:h-8 lg:top-3 lg:right-12 lg:top-4">
             <p className="text-white font-semibold lg:text-xl">
-              {Object.keys(numberOfItems).reduce(
-                (acc, key) => acc + (numberOfItems[key] || 0),
-                0
-              )}
+              {Object.keys(carts).length || 0}
             </p>
           </div>
 
