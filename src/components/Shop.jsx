@@ -1,13 +1,14 @@
 import React, { useRef } from "react";
 import Logo from "../assets/Logo.jpeg";
 import { useState, useEffect } from "react";
+import { Link } from "react-router";
 const Shop = () => {
   const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const fetchedRef = useRef(false);
   const [numberOfItems, setNumberOfItems] = useState({});
-  const [cart, setCart] = useState({});
+
   useEffect(() => {
     if (fetchedRef.current) return;
     fetchedRef.current = true;
@@ -56,11 +57,24 @@ const Shop = () => {
     const cart = JSON.parse(localStorage.getItem("cart") || "{}");
     cart[product.id] = (cart[product.id] || 0) + qty;
     localStorage.setItem("cart", JSON.stringify(cart));
+
     console.log("Added to cart:", product.id, qty, cart);
   };
   return (
     <div>
-      {loading && <span className="loading loading-infinity loading-xl"></span>}
+      {loading && (
+        <div
+          className="flex justify-center items-center py-20 mt-70"
+          role="status"
+          aria-live="polite"
+        >
+          <span
+            className="loading loading-bars loading-xl"
+            aria-hidden="true"
+          />
+          <span className="sr-only">Loading products…</span>
+        </div>
+      )}
       <nav className="bg-gray-800 p-5 absolute top-0 left-0 right-0 flex justify-between items-center gap-7 shadow-2xl lg:p-5">
         <div className="flex items-center gap-2 -ml-2.5 lg:ml-10 lg:gap-4 lg:text-xl ">
           <img
@@ -71,18 +85,18 @@ const Shop = () => {
           <h1 className="text-white font-bold lg:text-2xl">All Express</h1>
         </div>
         <div className="flex items-center gap-3 lg:gap-7 lg:text-lg lg:mr-10">
-          <a
-            href="#"
+          <Link
+            to="/"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
           >
             Home
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/shop"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
           >
             Shop
-          </a>
+          </Link>
           <a
             href="#"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
@@ -93,7 +107,10 @@ const Shop = () => {
       </nav>
       <div className="max-w-6xl mx-auto px-4 pt-28 mb-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 lg:mt-10">
         {products.map((product) => (
-          <div key={product.id} className="card bg-base-100 w-full shadow-sm">
+          <div
+            key={product.id}
+            className="card bg-base-100 w-full shadow-sm hover:shadow-lg transition-shadow duration-300 hover:scale-105 hover:z-10 hover:shadow-orange-200"
+          >
             <figure className="w-full">
               <img
                 src={product.image}
