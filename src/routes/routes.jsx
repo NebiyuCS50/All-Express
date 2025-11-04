@@ -1,7 +1,7 @@
 import React from "react";
 import Home from "../components/Home";
 import Shop from "../components/Shop";
-const Routes = [
+const routes = [
   {
     path: "/",
     element: <Home />,
@@ -12,4 +12,4 @@ const Routes = [
   },
 ];
 
-export default Routes;
+export default routes;
