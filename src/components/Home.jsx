@@ -5,6 +5,7 @@ import Img2 from "../assets/Img2.jpeg";
 import Img3 from "../assets/Img3.jpeg";
 import Img4 from "../assets/Img4.jpeg";
 import Logo from "../assets/Logo.jpeg";
+import { Link } from "react-router";
 
 const Home = () => {
   return (
@@ -18,19 +19,19 @@ const Home = () => {
           />
           <h1 className="text-white font-bold lg:text-2xl">All Express</h1>
         </div>
-        <div className="flex items-center gap-3 lg:gap-7 lg:text-lg">
-          <a
-            href="#"
+        <div className="flex items-center gap-3 lg:gap-7 lg:text-lg lg:mr-10">
+          <Link
+            to="/"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
           >
             Home
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to="/shop"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
           >
             Shop
-          </a>
+          </Link>
           <a
             href="#"
             className="text-white font-semibold hover:text-gray-300 lg:text-xl"
@@ -40,11 +41,11 @@ const Home = () => {
         </div>
       </nav>
       <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:gap-10 pt-24">
-        <h1 className="text-2xl font-bold text-center">
+        <h1 className="text-2xl font-bold text-center lg:text-3xl lg:w-full">
           Welcome to All Express - Your One-Stop Shop for Everything!
         </h1>
 
-        <div className="flex gap-3 justify-center flex-wrap">
+        <div className="flex gap-3 justify-center flex-wrap lg:gap-5 lg:ml-30">
           <img
             src={Img1}
             alt="Shopping Cart"
@@ -57,7 +58,7 @@ const Home = () => {
           />
         </div>
 
-        <div className="flex gap-3 justify-center flex-wrap">
+        <div className="flex gap-3 justify-center flex-wrap lg:gap-5 lg:mr-30">
           <img
             src={Img3}
             alt="Shopping Cart"
@@ -69,9 +70,12 @@ const Home = () => {
             className="object-cover w-40 h-40 lg:w-64 lg:h-64"
           />
         </div>
-
-        <button className="btn btn-lg btn-primary">Go to Shopping</button>
       </div>
+      <Link to="/shop">
+        <button className="btn btn-lg btn-primary mt-7 ml-25 lg:absolute lg:ml-40 lg:bottom-2">
+          Go to Shopping
+        </button>
+      </Link>
     </div>
   );
 };
