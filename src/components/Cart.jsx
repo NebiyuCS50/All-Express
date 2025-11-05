@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +19,8 @@ import { Link } from "react-router";
 const Cart = () => {
   const [cartProducts, setCartProducts] = React.useState([]);
   const ref = useRef(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (ref.current) return;
     ref.current = true;
@@ -29,14 +31,13 @@ const Cart = () => {
       if (ids.length === 0) return; // no items in cart
 
       try {
-        // Fetch all product details in parallel
+        setLoading(true);
         const responses = await Promise.all(
           ids.map((id) => fetch(`https://fakestoreapi.com/products/${id}`))
         );
 
         const products = await Promise.all(responses.map((res) => res.json()));
 
-        // Combine each product with its quantity from storedCart
         const productsWithQty = products.map((product) => ({
           ...product,
           quantity: storedCart[product.id],
@@ -45,7 +46,9 @@ const Cart = () => {
         setCartProducts(productsWithQty);
         console.log("Fetched cart products:", productsWithQty);
       } catch (error) {
-        console.error("Failed to fetch cart items:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -87,6 +90,19 @@ const Cart = () => {
   };
   return (
     <div>
+      {loading && (
+        <div
+          className="flex justify-center items-center py-20 mt-70"
+          role="status"
+          aria-live="polite"
+        >
+          <span
+            className="loading loading-bars loading-xl"
+            aria-hidden="true"
+          />
+          <span className="sr-only">Loading products…</span>
+        </div>
+      )}
       <nav className="bg-gray-800 p-5 absolute top-0 left-0 right-0 flex justify-between items-center gap-7 shadow-2xl lg:p-5">
         <div className="flex items-center gap-2 -ml-2.5 lg:ml-10 lg:gap-4 lg:text-xl ">
           <img
@@ -185,9 +201,34 @@ const Cart = () => {
               ))
             )}
           </CardContent>
-          <CardFooter className="flex-col gap-2"></CardFooter>
+          <CardFooter className="flex-col gap-2">
+            <Button className="hover:bg-orange-400 w-full text-xl transition-colors bg-orange-500 text-white font-bold py-2 px-4 rounded-lg">
+              CheckOut
+            </Button>
+            <Button className="hover:bg-red-400 w-full text-xl transition-colors bg-red-500 text-white font-bold py-2 px-4 rounded-lg">
+              Cancel
+            </Button>
+          </CardFooter>
         </Card>
       </div>
+      {error && (
+        <div role="alert" className="alert alert-error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>{error}</span>
+        </div>
+      )}
     </div>
   );
 };
