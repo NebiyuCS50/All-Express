@@ -10,6 +10,17 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useEffect } from "react";
@@ -28,7 +39,7 @@ const Cart = () => {
       const storedCart = JSON.parse(localStorage.getItem("cart") || "{}");
 
       const ids = Object.keys(storedCart);
-      if (ids.length === 0) return; // no items in cart
+      if (ids.length === 0) return;
 
       try {
         setLoading(true);
@@ -202,9 +213,31 @@ const Cart = () => {
             )}
           </CardContent>
           <CardFooter className="flex-col gap-2">
-            <Button className="hover:bg-orange-400 w-full text-xl transition-colors bg-orange-500 text-white font-bold py-2 px-4 rounded-lg">
-              CheckOut
-            </Button>
+            <AlertDialog>
+              <AlertDialogTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="w-full text-xl bg-orange-400 text-white font-bold py-2 px-4 rounded-lg hover:bg-orange-500 transition-colors"
+                >
+                  Checkout
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>
+                    This is where Payment is processed
+                  </AlertDialogTitle>
+                  <AlertDialogDescription>
+                    Once the Payment is processed, your order will be shipped to
+                    your address. Thank you for shopping with us!
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction>Continue</AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
             <Button className="hover:bg-red-400 w-full text-xl transition-colors bg-red-500 text-white font-bold py-2 px-4 rounded-lg">
               Cancel
             </Button>
