@@ -11,6 +11,8 @@ const Shop = () => {
   const [carts, setCarts] = useState([]);
 
   useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("cart") || "{}");
+    setCarts(storedCart);
     if (fetchedRef.current) return;
     fetchedRef.current = true;
     const fetchProducts = async () => {
